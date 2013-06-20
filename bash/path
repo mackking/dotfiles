@@ -1,0 +1,6 @@
+# Add all the necessary stuff to our PATH
+
+PATH="$HOME/bin:$PATH"
+PATH="/usr/local/mysql/bin:$PATH"
+
+export PATH

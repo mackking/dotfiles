@@ -1,0 +1,35 @@
+[user]
+	# If you fork this file, please update these so you don't look like me!!
+	name = Mackenzie King
+	email = mackking@gmail.com
+[core]
+	excludesfile = /Users/mack/.gitignore
+[alias]
+	c = commit -m
+	ca = commit -am
+	a = add
+	s = status -sb
+	d = diff
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[color]
+	ui = always
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote =green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[credential]
+	helper = osxkeychain

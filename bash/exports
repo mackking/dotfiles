@@ -1,0 +1,14 @@
+# make VIM the default editor
+export EDITOR="vim"
+
+# don't clear the screen when quitting man page
+export MANPAGER="less -X"
+
+# because less is more
+export PAGER="less"
+
+# control HISTORY command some
+export HISTSIZE=32768
+export HISTFILESIZE=$HISTSIZE
+export HISTCONTROL=ignoredups
+export HISTIGNORE="ls:ls *:cd:cd -:pwd"

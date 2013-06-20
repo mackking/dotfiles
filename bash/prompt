@@ -1,0 +1,54 @@
+##
+# Setup custom prompt
+#
+# 
+##
+
+# Git status.
+# Function barrowed from Ben Alman (https://github.com/cowboy/dotfiles)
+function prompt_git() {
+  ### prompt_getcolors
+  local status output flags
+  status="$(git status 2>/dev/null)"
+  [[ $? != 0 ]] && return;
+  output="$(echo "$status" | awk '/# Initial commit/ {print "(init)"}')"
+  [[ "$output" ]] || output="$(echo "$status" | awk '/# On branch/ {print $4}')"
+  [[ "$output" ]] || output="$(git branch | perl -ne '/^\* (.*)/ && print $1')"
+  flags="$(
+    echo "$status" | awk 'BEGIN {r=""} \
+      /^# Changes to be committed:$/        {r=r "+"}\
+      /^# Changes not staged for commit:$/  {r=r "!"}\
+      /^# Untracked files:$/                {r=r "?"}\
+      END {print r}'
+  )"
+  if [[ "$flags" ]]; then
+    output="$output$flags"
+  fi
+  echo " ($output)"
+}
+
+# ANSI CODES - SEPARATE MULTIPLE VALUES WITH ;
+#
+#  0  reset          4  underline
+#  1  bold           7  inverse
+#
+# FG  BG  COLOR     FG  BG  COLOR
+# 30  40  black     34  44  blue
+# 31  41  red       35  45  magenta
+# 32  42  green     36  46  cyan
+# 33  43  yellow    37  47  white
+
+prefix="\[\033["
+suffix="m\]"
+reset="${prefix}0${suffix}"
+bblack="${prefix}1;30${suffix}"
+bgreen="${prefix}1;32${suffix}"
+bblue="${prefix}1;34${suffix}"
+bcyan="${prefix}1;36${suffix}"
+
+
+## PS1="\n\[\033[1;30m\][\u@\h\[\033[0m\] \w\$(prompt_git)\[\033[1;30m\]]>\[\033[0m\] "
+PS1="\n$bblack[$bblue\u@\h $bcyan\w$bgreen\$(prompt_git)$bblack]>$reset "
+
+# cleanup shell variable space.
+unset prefix suffix reset bblack bgreen bblue bcyan
