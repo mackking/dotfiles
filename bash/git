@@ -1,0 +1,59 @@
+# Extra configuration for use with GIT.
+# To be 'source'd if GIT is installed.
+
+if [[ ! "$(type -P git)" ]]; then
+	echo -e " \033[1;31m✖\033[0m  Git not currently installed."
+	return 1
+fi
+
+alias g=git
+
+
+# add completion support, including for alias (if git-completion.bash installed)
+if [ -f /usr/local/git/contrib/completion/git-completion.bash ]
+then
+	source /usr/local/git/contrib/completion/git-completion.bash
+	complete -o bashdefault -o default -o nospace -F __git_wrap__git_main g 2>/dev/null \
+		|| complete -o default -o nospace -F __git_wrap__git_main g
+fi
+
+# add repo status info as a PROMPT_COMMAND
+
+# Backup function in case git-contrib version doesn't exist.
+# Barrowed from Ben Alman (https://github.com/cowboy/dotfiles)
+function prompt_git() {
+  ### prompt_getcolors
+  local status output flags
+  status="$(git status 2>/dev/null)"
+  [[ $? != 0 ]] && return;
+  output="$(echo "$status" | awk '/# Initial commit/ {print "(init)"}')"
+  [[ "$output" ]] || output="$(echo "$status" | awk '/# On branch/ {print $4}')"
+  [[ "$output" ]] || output="$(git branch | perl -ne '/^\* (.*)/ && print $1')"
+  flags="$(
+    echo "$status" | awk 'BEGIN {r=""} \
+      /^# Changes to be committed:$/        {r=r "+"}\
+      /^# Changes not staged for commit:$/  {r=r "*"}\
+      /^# Untracked files:$/                {r=r "%"}\
+      END {print r}'
+  )"
+  if [[ "$flags" ]]; then
+    output="$output$flags"
+  fi
+  echo "$output"
+}
+
+if [ -f /usr/local/git/contrib/completion/git-prompt.sh ]
+then
+	source /usr/local/git/contrib/completion/git-prompt.sh
+
+	# setup some variables for the __git_ps1 function
+	GIT_PS1_SHOWDIRTYSTATE=true
+	GIT_PS1_SHOWSTASHSTATE=true
+	GIT_PS1_SHOWUNTRACKEDFILES=true
+	GIT_PS1_SHOWCOLORHINTS=true
+
+	PROMPT_COMMAND='__git_ps1 "\n\033[1;32;47m(%s)\033[0m"'
+else
+	# fallback to alternate
+	PROMPT_COMMAND='printf -- "\n\033[1;32;47m(%s)\033[0m" $(prompt_git)'
+fi
