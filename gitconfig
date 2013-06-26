@@ -1,15 +1,21 @@
 [user]
-	# If you fork this file, please update these so you don't look like me!!
-	name = Mackenzie King
-	email = mackking@gmail.com
+	# Leave this section blank. Place your own user credentials in .gitconfig.user (see [include] at end of this file)
 [core]
 	excludesfile = /Users/mack/.gitignore
 [alias]
-	c = commit -m
-	ca = commit -am
-	a = add
+	c = commit -m 			# commit with message
+	ca = commit -am 		# commit all with message
+	cfix = commit --amend 	# amend last commit
+	
+	a = add 				# add
+	
 	s = status -sb
-	d = diff
+
+	r = remote -v 			# show remotes (verbose)
+
+	d = diff 				# diff unstaed changes
+	dc = diff --cached		# diff staged changes
+
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -33,3 +39,6 @@
 	trustExitCode = true
 [credential]
 	helper = osxkeychain
+[include]
+	# allow user-level config settings via un-tracked file
+	path = .gitconfig.user

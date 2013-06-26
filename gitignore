@@ -1,2 +1,20 @@
-*~
+# ----------
+# Master/Global gitignore setup.
+# Many thanks to https://github.com/github/gitignore
+# ----------
+
+
+# OSX
+# ----------
 .DS_Store
+# Thumbnails
+._*
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+
+# SASS
+# ----------
+*.sass-cache
+*.css.map
