@@ -1,6 +1,6 @@
 # shell configuration is done via the collection of files in the .bash
 # directory. all files (that exist) are sourced as listed below.
-for file in ~/.bash/{path,prompt,exports,aliases,functions,extra}; do
+for file in ~/.bash/{path,prompt,exports,aliases,functions,git,webdev}; do
 	[ -r "$file" ] && source "$file"
 done
 unset file

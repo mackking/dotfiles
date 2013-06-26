@@ -4,3 +4,5 @@ PATH="$HOME/bin:$PATH"
 PATH="/usr/local/mysql/bin:$PATH"
 
 export PATH
+
+# TODO add some $CDPATH stuff here too??

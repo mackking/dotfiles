@@ -5,7 +5,5 @@ function mdg() {
 
 # find shorthand
 function find() {
-    find . -name "$1"
+	find . -name "$1"
 }
-
-
