@@ -1,0 +1,14 @@
+##
+# Contains Web (HTML/CSS/JS) related config
+##
+
+# SASS related
+
+if [[ type -P sass ]]; then
+	# setup SASS to watch the specified files/locations
+	alias swatch='sass --watch --scss'
+	# allow for creation of source maps
+	alias swatchmap='sass_watch --sourcemap'
+	# compile a minified version of our sass files
+	alias sassmin='sass --scss --style compressed'
+fi
