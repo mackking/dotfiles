@@ -8,10 +8,10 @@ My collection of system [dotfiles](http://dotfiles.github.io/). Rather than fork
 
   - **`init`**: scripts for initializing the `dotfile` repo contents into the system
   - **`bash`**: bash specific files.
-    - first level are the files to be simlinked into `~`
-    - sub-folders are resources to be used by the upper level files as `source`s
+    - contents `link` folder will be symlinked into `~`
+    - contents of `source` folder will be sourced by sourced by other parts of the system (probalby `.bash_profile`)
   - **`apps`**: Application specific settings & config folders
-  - **`bin`**: Collection of little scripts that aren't stricktly par of system setup but are still useful (to me)
+  - **`bin`**: Collection of little scripts that aren't stricktly part of system setup but are still useful (to me)
 
 
 ## TODO

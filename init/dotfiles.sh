@@ -9,6 +9,6 @@
 REPODIR=$(cd "$(dirname "$0")"; pwd)
 
 for file in $REPODIR/*; do
-	[ -r "$file" -a -f "$file" ] && echo "$HOME/.$(basename $file)"
+	[[ -r "$file" -a -f "$file" ]] && echo "$HOME/.$(basename $file)"
 done
 unset file
