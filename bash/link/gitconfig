@@ -1,14 +1,17 @@
 [user]
-	# Leave this section blank. Place your own user credentials in .gitconfig.user (see [include] at end of this file)
+	# Leave this section blank. Place in [include]d ~/.gitconfig.user
+[include]
+	# allow user-level config settings via un-tracked file
+	path = ~/.gitconfig.user
 [core]
-	excludesfile = /Users/mack/.gitignore
+	excludesfile = ~/.gitignore
 [alias]
 	c = commit -m 			# commit with message
 	ca = commit -am 		# commit all with message
 	cfix = commit --amend 	# amend last commit
-	
+
 	a = add 				# add
-	
+
 	s = status -sb
 
 	r = remote -v 			# show remotes (verbose)
@@ -18,7 +21,7 @@
 
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [color]
 	ui = always
 [color "branch"]
@@ -39,6 +42,3 @@
 	trustExitCode = true
 [credential]
 	helper = osxkeychain
-[include]
-	# allow user-level config settings via un-tracked file
-	path = .gitconfig.user
