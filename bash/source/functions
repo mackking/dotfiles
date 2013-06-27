@@ -7,3 +7,22 @@ function mdg() {
 function find() {
 	find . -name "$1"
 }
+
+# Spinner/throbber function to indicate processing of long jobs
+# usage:
+#   (some_really_long_command) &   # must be run in background
+#   spinner "Your message..."      # (message is optional)
+function spinner() {
+	local pid=$!
+	local msg=${1:-"Please wait..."}
+	local delay=0.5
+	echo -n $msg
+	while [ $(ps -eo pid | grep $pid) ]; do
+		for i in \| / - \\; do
+			printf ' [%c] ' $i
+			sleep $delay
+			printf '\b\b\b\b\b'
+		done
+	done
+	printf '  DONE!'
+}
