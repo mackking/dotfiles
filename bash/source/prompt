@@ -1,7 +1,7 @@
 ##
 # Setup custom prompt
 #
-# Just doing basic color highlighting at the moment.
+# Just doing basic color highlighting here.
 # Custom Git handling is done in the git specific setup
 ##
 
@@ -16,15 +16,20 @@
 # 32  42  green     36  46  cyan
 # 33  43  yellow    37  47  white
 
-prefix="\[\033["
-suffix="m\]"
-reset="${prefix}0${suffix}"
-bblack="${prefix}1;30${suffix}"
-bgreen="${prefix}1;32${suffix}"
-bblue="${prefix}1;34${suffix}"
-bcyan="${prefix}1;36${suffix}"
+function __ps1() {
+    local prefix="\[\033["
+    local suffix="m\]"
+    local reset="${prefix}0${suffix}"
+    local bblack="${prefix}1;30${suffix}"
+    local bred="${prefix}1;31${suffix}"
+    local bgreen="${prefix}1;32${suffix}"
+    local byellow="${prefix}1;33${suffix}"
+    local bblue="${prefix}1;34${suffix}"
+    local bmagenta="${prefix}1;35${suffix}"
+    local bcyan="${prefix}1;36${suffix}"
+    local bwhite="${prefix}1;37${suffix}"
 
-PS1="\n$bblack[$bblue\u@\h $bcyan\w$bblack]>$reset "
+    echo "\n$bblack[$byellow\u$bred@$bblue\h $bcyan\w$bblack]>$reset "
+}
 
-# cleanup shell variable space.
-unset prefix suffix reset bblack bgreen bblue bcyan
+PS1=$(__ps1)
