@@ -26,3 +26,23 @@ function spinner() {
 	done
 	printf '  DONE!'
 }
+
+
+if [[ "$OSTYPE" =~ ^darwin ]]
+then
+
+	# Add the specified number of 'spaces' to the dock.
+	# Spaces will be added to the right/bottom end of the dock and can be
+	# dragged into place after they are created, or dragged off the dock to
+	# be removed.
+	#
+	# Doc will be killall'd at the end to force the spaces to showup
+	function dockspace() {
+		local i count=${1:-1}
+		for (( i=0; i < $count; i++ )); do
+			defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="spacer-tile";}'
+		done
+		killall Dock
+	}
+
+fi
