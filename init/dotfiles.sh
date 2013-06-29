@@ -1,14 +1,19 @@
-#!/bin/bash
+#! /usr/bin/env bash
 
-####
+# ----------
 # Installation script for the files in the dotfiles repo.
 #
-#
+# ----------
 
-# get the repo's directory from this script itself
-REPODIR=$(cd "$(dirname "$0")"; pwd)
+source ~/.dotfiles/init/util.sh
 
-for file in $REPODIR/*; do
-	[[ -r "$file" -a -f "$file" ]] && echo "$HOME/.$(basename $file)"
+e_header "Starting dotfile initialization..."
+
+files=(~/.dotfiles/bash/link/*)
+
+for file in "${files[@]}"; do
+	ln -sfv "$file" "$HOME/dotbak/.$(basename $file)"
 done
 unset file
+
+e_success "Linking complete. source .bashrc for full effect."
