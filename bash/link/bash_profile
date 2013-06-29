@@ -13,6 +13,6 @@ shopt -s no_empty_cmd_completion  # don't complete on accidental tab on empty li
 shopt -s dotglob      # enable dotfile globing
 
 # and some bash 4.x only setup
-if [[ $BASH_VERSINFO[0] = 4]]; then
+if [[ "$BASH_VERSINFO[0]" = "4" ]]; then
 	shopt -s autocd       # enable implicit `cd` support
 fi
