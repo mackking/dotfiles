@@ -52,8 +52,11 @@ then
 	GIT_PS1_SHOWUNTRACKEDFILES=true
 	GIT_PS1_SHOWCOLORHINTS=true
 
-	PROMPT_COMMAND='__git_ps1 "\n\033[1;32;47m(%s)\033[0m"'
+	pcmd='__git_ps1 "\n\033[1;32;47m(%s)\033[0m"'
 else
 	# fallback to alternate
-	PROMPT_COMMAND='printf -- "\n\033[1;32;47m(%s)\033[0m" $(prompt_git)'
+	pcmd='printf -- "\n\033[1;32;47m(%s)\033[0m" $(prompt_git)'
 fi
+
+# now chain the new git command with any existing command (like OSX Terminal updating the tab title)
+PROMPT_COMMAND="$pcmd; $PROMPT_COMMAND"
