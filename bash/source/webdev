@@ -4,7 +4,7 @@
 
 # SASS related
 
-if [[ type -P sass ]]; then
+if [[ "$(type -P sass)" ]]; then
 	# setup SASS to watch the specified files/locations
 	alias swatch='sass --watch --scss'
 	# allow for creation of source maps
