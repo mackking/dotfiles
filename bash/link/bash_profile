@@ -1,18 +1,6 @@
-# shell configuration is done via the collection of files in the bash
-# directory. all files (that exist) are sourced as listed below.
-for file in ~/.dotfiles/bash/source/{path,prompt,exports,aliases,functions,git,webdev}; do
+# most of the heavy setup lifting is split into sub-files so we source them here
+for file in ~/.dotfiles/bash/source/{options,path,prompt,exports,aliases,functions,git,webdev}; do
 	[[ -r "$file" ]] && source "$file"
 done
 unset file
 
-# set some shell options
-shopt -s nocaseglob   # ignore case when doing file name expansion
-shopt -s cdspell      # ignore minor spelling errors when expanding
-shopt -s histappend   # append history instead of overwritting
-shopt -s no_empty_cmd_completion  # don't complete on accidental tab on empty line
-shopt -s dotglob      # enable dotfile globing
-
-# and some bash 4.x only setup
-if [[ "$BASH_VERSINFO[0]" = "4" ]]; then
-	shopt -s autocd       # enable implicit `cd` support
-fi

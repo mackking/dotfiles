@@ -1,0 +1,13 @@
+# set shell options
+shopt -s nocaseglob   # ignore case when doing file name expansion
+shopt -s cdspell      # ignore minor spelling errors when expanding
+shopt -s histappend   # append history instead of overwritting
+shopt -s no_empty_cmd_completion  # don't complete on accidental tab on empty line
+shopt -s dotglob      # enable dotfile globing
+shopt -s cmdhist      # attempt to merge multi-line commands into one
+shopt -s checkwinsize # update LINES and COLUMNS after each command, if necessary
+
+# and some bash 4.x only setup
+if [[ "$BASH_VERSINFO[0]" = "4" ]]; then
+	shopt -s autocd       # enable implicit `cd` support
+fi
