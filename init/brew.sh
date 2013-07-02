@@ -7,6 +7,13 @@
 
 source ~/.dotfiles/bash/init/util.sh
 
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing sudo time stamp if set, otherwise do nothing.
+# (https://gist.github.com/3118588)
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 # check for and install Homebrew if necesary
 
 if [[ ! "$(type -P brew)" ]]; then
@@ -23,7 +30,8 @@ brew upgrade
 
 # Packages to be installed view Homebrew
 
-formulae=(coreutils findutils bash tree git virtualhost.sh mysql)
+formulae=(coreutils findutils bash bash-completion tree git virtualhost.sh)
+# future additions: mysql
 
 e_header "Installing brew formulae..."
 

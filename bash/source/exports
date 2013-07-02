@@ -11,4 +11,8 @@ export PAGER="less"
 export HISTSIZE=32768
 export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
-export HISTIGNORE="ls:ls *:cd:cd -:pwd"
+export HISTIGNORE="ls:la:ll:cd:cd -:pwd:* -h:* --help:* --version:c:clear"
+
+# Make new shells get the history lines from all previous
+# shells instead of the default "last window closed" history
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"

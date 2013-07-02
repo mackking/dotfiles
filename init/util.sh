@@ -1,5 +1,5 @@
 # ----------
-# A couple utility functions to be used by the various init scripts.
+# Utility functions to be used by the various init scripts.
 # ----------
 
 # Logging stuff. Borrowed from @cowboy

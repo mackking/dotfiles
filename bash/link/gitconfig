@@ -1,7 +1,6 @@
-[user]
-	# Leave this section blank. Place in [include]d ~/.gitconfig.user
 [include]
-	# allow user-level config settings via un-tracked file
+	# DO NOT define a [user] block!!!
+	# Instead, allow user-level config settings via un-tracked `.gitconfig.user` file.
 	path = ~/.gitconfig.user
 [core]
 	excludesfile = ~/.gitignore

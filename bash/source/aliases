@@ -38,6 +38,9 @@ alias du='du -hd 1'
 # clear screen
 alias c='clear'
 
+# reload bash setup
+alias rebash='source ~/.bashrc'
+
 # OSX-specific aliases
 if [[ "$OSTYPE" =~ ^darwin ]]
 then

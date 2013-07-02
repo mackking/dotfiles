@@ -1,4 +1,4 @@
-# most of the heavy setup lifting is split into sub-files so we source them here
+# all the heavy lifting is split into sub-files so we simply source them here
 for file in ~/.dotfiles/bash/source/{options,path,prompt,exports,aliases,functions,git,webdev}; do
 	[[ -r "$file" ]] && source "$file"
 done
