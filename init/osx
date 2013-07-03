@@ -1,0 +1,52 @@
+#! /usr/bin/env bash
+
+# ----------
+# OSX consistent setup/initialization script.
+# Should only need to be run once on a machine.
+# ----------
+
+## Dock preferences
+
+    # make icons of hidden applications translucent
+    defaults write com.apple.dock 'showhidden' -bool true
+
+    # Show indicator lights for open applications
+    defaults write com.apple.dock 'show-process-indicators' -bool true
+
+    # set icon size 40px
+    /usr/bin/defaults write com.apple.dock 'tilesize' -int 40
+
+    # Magnification: off, 60px
+    /usr/bin/defaults write com.apple.dock 'magnification' -bool false
+    /usr/bin/defaults write com.apple.dock 'largesize' -int 60
+
+    # Restore windows when quitting and re-opening apps: off
+    /usr/bin/defaults write -g 'NSQuitAlwaysKeepsWindows' -bool false
+
+     # Translucent menu bar: off
+    /usr/bin/defaults write -g 'AppleEnableMenuBarTransparency' -bool false
+
+    # Don't show Dashboard as a space
+    /usr/bin/defaults write com.apple.dock 'dashboard-in-overlay' -bool false
+
+## Finder preferences
+
+    # Avoid creating .DS_Store files on network volumes
+    defaults write com.apple.desktopservices 'DSDontWriteNetworkStores' -bool true
+
+    # Enable snap-to-grid for icons on the desktop and in other icon views
+    /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+    /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+    /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+
+    # Show all filename extensions
+    defaults write NSGlobalDomain 'AppleShowAllExtensions' -bool true
+
+    # Show icons for hard drives, servers, and removable media on the desktop
+    defaults write com.apple.finder 'ShowExternalHardDrivesOnDesktop' -bool true
+    defaults write com.apple.finder 'ShowHardDrivesOnDesktop' -bool true
+    defaults write com.apple.finder 'ShowMountedServersOnDesktop' -bool true
+    defaults write com.apple.finder 'ShowRemovableMediaOnDesktop' -bool true
+
+    # Use full POSIX path as window title
+    defaults write com.apple.finder '_FXShowPosixPathInTitle' -bool true
