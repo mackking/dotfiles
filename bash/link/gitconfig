@@ -11,6 +11,8 @@
 
 	a = add 				# add
 
+	undo = checkout --		# undo any local changes to a files; reverts to latest of current local branch
+
 	s = status -sb
 
 	r = remote -v 			# show remotes (verbose)
