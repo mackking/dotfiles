@@ -27,6 +27,25 @@ function spinner() {
 	printf '  DONE!'
 }
 
+# find and list processes matching a case-insensitive partial-match string
+function fp() {
+		ps Ao pid,comm|awk '{match($0,/[^\/]+$/); print substr($0,RSTART,RLENGTH)": "$1}'|grep -i $1|grep -v grep
+}
+
+# Find and Kill a process based on partial name (uses fp)
+# http://brettterpstra.com/2010/03/06/fk-redux/
+function fk() {
+	IFS=$'\n'
+	PS3='Kill which process? (1 to cancel): '
+	select OPT in "Cancel" $(fp $1); do
+		if [ $OPT != "Cancel" ]; then
+			kill $(echo $OPT|awk '{print $NF}')
+		fi
+		break
+	done
+	unset IFS
+}
+
 
 if [[ "$OSTYPE" =~ ^darwin ]]
 then
@@ -45,4 +64,15 @@ then
 		killall Dock
 	}
 
+
+	# cd to the path of the front Finder window
+	# http://brettterpstra.com/2013/02/09/quick-tip-jumping-to-the-finder-location-in-terminal/
+	function cdf() {
+		target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
+		if [ "$target" != "" ]; then
+			cd "$target"; pwd
+		else
+			echo 'No Finder window found' >&2
+		fi
+	}
 fi

@@ -2,13 +2,23 @@
 # Contains Web (HTML/CSS/JS) related config
 ##
 
+# get Width and Height of an images
+alias imgsize='sips -g pixelWidth -g pixelHeight'
+
+
+# encode a given image file as base64 and output css background property to clipboard
+function b64img() {
+	openssl base64 -in $1 | awk -v ext="${1#*.}" '{ str1=str1 $0 }END{ print "background:url(data:image/"ext";base64,"str1");" }'|pbcopy
+	echo "$1 encoded to clipboard"
+}
+
 # SASS related
 
 if [[ "$(type -P sass)" ]]; then
 	# setup SASS to watch the specified files/locations
 	alias swatch='sass --watch --scss'
 	# allow for creation of source maps
-	alias swatchmap='sass_watch --sourcemap'
+	alias swatchmap='sass --watch --scss --sourcemap'
 	# compile a minified version of our sass files
 	alias sassmin='sass --scss --style compressed'
 fi
