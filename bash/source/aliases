@@ -20,13 +20,23 @@ alias ~='cd ~'
 alias -- -='cd -' # leading double minus required to define single minus alias
 
 # ls variants
-alias la='ls -GFA'
-alias ll='ls -GFlh'
-alias lla='ls -GFlhA'
-alias ls='ls -GF'
-alias lsf='ls -GF'
 
-# for better LS color, http://hocuspokus.net/2008/01/a-better-ls-for-mac-os-x/
+# is GNU ls installed via Homebrew??
+if [ -f $(brew --prefix)/bin/gls ]; then
+    colorflag="--color=auto"
+    # for better LS color, http://hocuspokus.net/2008/01/a-better-ls-for-mac-os-x/
+    eval `gdircolors` # load/set $LS_COLORS
+    _ls="gls"
+else # OS X `ls`
+    colorflag="-G"
+    _ls="ls"
+fi
+
+alias ls='$_ls $colorflag -F'
+alias ll='ls -lh'
+alias lla='ll -A'
+alias la='ls -A'
+
 
 # mkdir, recursive
 alias md='mkdir -p'
@@ -44,12 +54,12 @@ alias rebash='source ~/.bashrc'
 # OSX-specific aliases
 if [[ "$OSTYPE" =~ ^darwin ]]
 then
-	# launch Sublime Text from the command line
-	alias subl='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl'
+    # launch Sublime Text from the command line
+    alias subl='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl'
 
-	# Open OSX Finder
-	alias f='open -a Finder'
+    # Open OSX Finder
+    alias f='open -a Finder'
 
-	# put the computer to sleep
-	alias sleepy='pmset sleepnow'
+    # put the computer to sleep
+    alias sleepy='pmset sleepnow'
 fi
