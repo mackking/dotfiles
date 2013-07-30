@@ -5,7 +5,7 @@
 # To find more available packages checkout http://braumeister.org/
 # ----------
 
-source ~/.dotfiles/bash/init/util.sh
+source ~/.dotfiles/init/util.sh
 
 # Ask for the administrator password upfront
 sudo -v
@@ -18,7 +18,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 if [[ ! "$(type -P brew)" ]]; then
     e_header "Installing Homebrew..."
-    true | /usr/bin/ruby -e "$(/usr/bin/curl -fsSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"
+    true | /usr/bin/ruby -e "$(/usr/bin/curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
     e_success "Homebrew installed"
 else
     #make sure brew is up to date

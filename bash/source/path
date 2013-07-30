@@ -2,6 +2,7 @@
 
 PATH="$HOME/bin:$HOME/.dotfiles/bin:$PATH"
 PATH="/usr/local/mysql/bin:$PATH"
+PATH="/usr/local/bin:$PATH"  # mostly for Homebrew support
 
 export PATH
 

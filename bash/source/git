@@ -9,11 +9,10 @@ fi
 alias g=git
 
 
-# add completion support, including for alias (if git-completion.bash installed)
-# TODO look for completion stuff in BREW location as well//instead
-if [[ -f /usr/local/git/contrib/completion/git-completion.bash ]]
+# add completion support, including for alias (if git-completion.bash installed via Homebrew)
+if [[ -f $(brew --prefix)/etc/bash_completion.d/git-completion.bash ]]
 then
-	source /usr/local/git/contrib/completion/git-completion.bash
+	source $(brew --prefix)/etc/bash_completion.d/git-completion.bash
 	complete -o bashdefault -o default -o nospace -F __git_wrap__git_main g 2>/dev/null \
 		|| complete -o default -o nospace -F __git_wrap__git_main g
 fi
@@ -46,9 +45,9 @@ function prompt_git() {
 
 pattern="\n\033[1;32;47m(%s)\033[0m"
 
-if [[ -f /usr/local/git/contrib/completion/git-prompt.sh ]]
+if [[ -f $(brew --prefix)/etc/bash_completion.d/git-prompt.sh ]]
 then
-	source /usr/local/git/contrib/completion/git-prompt.sh
+	source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
 
 	# setup some variables for the __git_ps1 function
 	GIT_PS1_SHOWDIRTYSTATE=true
