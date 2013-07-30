@@ -1,5 +1,5 @@
 # all the heavy lifting is split into sub-files so we simply source them here
-for file in ~/.dotfiles/bash/source/{options,path,prompt,exports,aliases,functions,git,webdev}; do
+for file in ~/.dotfiles/bash/source/{options,path,prompt,exports,aliases,functions,git,webdev,misc}; do
 	[[ -r "$file" ]] && source "$file"
 done
 unset file

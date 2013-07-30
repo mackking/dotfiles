@@ -1,0 +1,8 @@
+#
+# And a miscelaneous grab bag of other shell setup
+#
+
+# Load up bash_completions if included via homebrew
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
