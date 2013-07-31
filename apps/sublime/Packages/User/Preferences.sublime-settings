@@ -1,0 +1,16 @@
+{
+	"bold_folder_labels": true,
+	"color_scheme": "Packages/Color Scheme - Default/Monokai Bright.tmTheme",
+	"colored_folder_glyphs": false,
+	"disable_colored_folder_labels": true,
+	"draw_minimap_border": true,
+	"font_size": 14,
+	"highlight_modified_tabs": true,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"sidebar_folders": true,
+	"theme": "Nil.sublime-theme",
+	"trim_trailing_white_space_on_save": true
+}
